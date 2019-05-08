@@ -3,10 +3,10 @@
 
 [![Join the chat at https://gitter.im/oss2019/pygame](https://badges.gitter.im/oss2019/pygame.svg)](https://gitter.im/oss2019/pygame?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-What has to be done :
+# What has to be done :
 To enhance the present pygame and to build pygame bits if superb ideas persists
 
-Motivation:
+# Motivation:
 
 1.As python is the new big word and game development has been fascinating from a long while !
 here you can learn both of them .
@@ -17,7 +17,7 @@ here you can learn both of them .
 
 4.An interesting example for learning OOPS.
 
-Features :
+# Features :
 
 You will learn building a pygame, basic concepts of OOPS .
 You will learn image processing .
@@ -25,24 +25,25 @@ You will be interfacing it which will make you learn many things .
 (You may use an arduino, ros if you are a vry beginner which will still make you learn many things . )
 You will learn manimations( animations using just python codes ) all along .
 
-Planned Schedule :
-Phase 1:
+# Planned Schedule :
+
+# Phase 1:
 Learning pygame and building small pygame bits.
 
-Phase 2 :
+# Phase 2 :
 Improvement in the present pygame project. (and if a fascinating idea persists, working on both of them )
 Adding features .
 
-Phase 3 :
+# Phase 3 :
 making use of adaptive thresholding in image processing.
 implementing image processing for 'Eye-Detection'.
 Interfacing for player movement using movement of 'Eye' .
 (for errors we will be using ROS..(robotics operating system)...  )
 
-Phase 4 :
+# Phase 4 :
 learning manimations
 and slot of implementing it .
 
-P.S: though its a lot many things but things would be easier, interesting and learing at the same time .
+# P.S: though its a lot many things but things would be easier, interesting and learing at the same time .
 
 
