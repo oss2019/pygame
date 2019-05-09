@@ -2,8 +2,8 @@
 ( Introduction to PyGames. )
 
 #  Learning python for beginners .
-https://www.souravsengupta.com/cds2015/python/LPTHW.pdf
-https://www.youtube.com/playlist?list=PL6gx4Cwl9DGAcbMi1sH6oAMk4JHw91mC_
+1. https://www.souravsengupta.com/cds2015/python/LPTHW.pdf
+2. https://www.youtube.com/playlist?list=PL6gx4Cwl9DGAcbMi1sH6oAMk4JHw91mC_
 (feel free to use other resources)
 
 #  Learning about PyGames .
