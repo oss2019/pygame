@@ -1,4 +1,4 @@
-## ColorWow
+# ColorWow
 # pygame
 
 [![Join the chat at https://gitter.im/oss2019/pygame](https://badges.gitter.im/oss2019/pygame.svg)](https://gitter.im/oss2019/pygame?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -44,5 +44,5 @@ Interfacing for player movement using movement of 'Eye' .
 learning manimations
 and slot of implementing it .
 
-# P.S: though its a lot many things but things would be easier, interesting and learing at the same time .
+## P.S: though its a lot many things but things would be easier, interesting and learing at the same time .
 
