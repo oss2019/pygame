@@ -222,7 +222,7 @@ def show_go_screen():
 
 def time_limit_exceeded():
     draw_text(screen, "Game Over", 48, width/2, height/3)
-    draw_text(screen, "Sorry, You didn't scored enough points", 30, width/2, height/2)
+    draw_text(screen, "Sorry, You didn't score enough points", 30, width/2, height/2)
     draw_text(screen, "Press ENTER",20, width/2, 3*height/4)
     pygame.display.flip()
     waiting = True
