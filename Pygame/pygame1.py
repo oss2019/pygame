@@ -4,6 +4,7 @@ import pygame
 import random
 from os import path
 import os
+import sys
 
 height = 480
 width = 600
@@ -64,15 +65,22 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = width/2
         self.rect.bottom = height - 40
         self.speedx = 0
+        self.speedy = 0
 
     def update(self):
        	self.speedx = 0
+        self.speedy = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
     	    self.speedx = -5
         if keystate[pygame.K_RIGHT]:
     	    self.speedx = 5
+        if keystate[pygame.K_UP]:
+            self.speedy = -5
+        if keystate[pygame.K_DOWN]:
+            self.speedy = 5
         self.rect.x += self.speedx
+        self.rect.y += self.speedy
         if self.rect.right > width:
         	self.rect.right = width
         if self.rect.left < 0:
@@ -92,35 +100,11 @@ class Timer(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = 10
         self.rect.bottom = height - 5
-        self.speedx = 3
+        self.speedx = 2
 
     def update(self):
         self.rect.x += self.speedx
-        if self.rect.right > width:
-                self.kill()
-                show_go_screen()
-                all_sprites = pygame.sprite.Group()
-                mobs = pygame.sprite.Group()
-                enemy = pygame.sprite.Group()
-                bullets = pygame.sprite.Group()
-                player = Player()
-                all_sprites.add(player)
-                time = Timer()
-                all_sprites.add(time)
-                for i in range(1):
-                    m = Mob()
-                    n = Mob1()
-                    o = Mob2()
-                    p = Mob3()
-                    all_sprites.add(m)
-                    all_sprites.add(n)
-                    all_sprites.add(o)
-                    all_sprites.add(p)
-                    mobs.add(n)
-                    mobs.add(o)
-                    mobs.add(p)
-                    enemy.add(m)
-                score = 0
+
 
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
@@ -231,6 +215,23 @@ def show_go_screen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    waiting = False
+
+def time_limit_exceeded():
+    draw_text(screen, "Game Over", 48, width/2, height/3)
+    draw_text(screen, "Sorry, You didn't score enough points", 30, width/2, height/2)
+    draw_text(screen, "Press ENTER",20, width/2, 3*height/4)
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     waiting = False
@@ -342,6 +343,11 @@ while running:
     if hits:
         game_over = True
 
+    if time.rect.right > width:
+        game_over = True
+        time_limit_exceeded()
+
+
     # Draw / render
     screen.fill(BLACK)
     all_sprites.draw(screen)
@@ -351,3 +357,4 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+
