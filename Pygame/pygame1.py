@@ -5,6 +5,7 @@ import random
 from os import path
 import os
 import sys
+import math
 
 height = 480
 width = 600
@@ -60,21 +61,30 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         #self.image = pygame.Surface((50,50))
         #self.image.fill(GREEN)
-        self.image = pygame.image.load(os.path.join(img_folder, "player1.jpg")).convert()
+        self.image = pygame.transform.scale(pygame.image.load(os.path.join(img_folder, "player1.jpeg")).convert(), (45, 45))
+        self.org_image = self.image.copy()
         self.rect = self.image.get_rect()
         self.rect.centerx = width/2
         self.rect.bottom = height - 40
         self.speedx = 0
         self.speedy = 0
+        self.angle = 0
+        self.direction = pygame.Vector2(1, 0)
+
 
     def update(self):
        	self.speedx = 0
         self.speedy = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
-    	    self.speedx = -5
+            self.speedx = -5
+        if keystate[pygame.K_LEFT] and keystate[pygame.K_LCTRL]:
+            self.angle += 3
         if keystate[pygame.K_RIGHT]:
-    	    self.speedx = 5
+            self.speedx = 5
+        if keystate[pygame.K_RIGHT] and keystate[pygame.K_LCTRL]:
+            self.angle -= 3
+
         if keystate[pygame.K_UP]:
             self.speedy = -5
         if keystate[pygame.K_DOWN]:
@@ -85,8 +95,14 @@ class Player(pygame.sprite.Sprite):
         	self.rect.right = width
         if self.rect.left < 0:
     	    self.rect.left = 0
+
+        self.direction = pygame.Vector2(1, 0).rotate(-self.angle)
+        self.image = pygame.transform.rotate(self.org_image, self.angle)
+        self.rect = self.image.get_rect(center=self.rect.center)
+
+
     def shoot(self):
-        bullet = Bullet(self.rect.centerx, self.rect.top)
+        bullet = Bullet(self.rect.centerx, self.rect.centery, self.angle)
         all_sprites.add(bullet)
         bullets.add(bullet)
     #shoot_sound.play()
@@ -187,18 +203,21 @@ class Mob3(pygame.sprite.Sprite):
     	    self.speedy = random.randrange(1,8)
 
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, x,y):
+    def __init__(self, x,y,angle):
         pygame.sprite.Sprite.__init__(self)
         #self.image = pygame.Surface((10,10))
         #self.image.fill(WHITE)
         self.image = pygame.image.load(os.path.join(img_folder, "bullet8.png")).convert()
         self.rect = self.image.get_rect()
+        speed = 10
+        self.speedx = math.cos(math.radians(-angle-90)) * speed
+        self.speedy = math.sin(math.radians(-angle-90)) * speed
         self.rect.bottom = y
         self.rect.centerx = x
-        self.speedy = -40
 
     def update(self):
         self.rect.y += self.speedy
+        self.rect.x += self.speedx
         # kill if it moves off the top of the screen
         if self.rect.bottom < 0:
             self.kill()
@@ -357,4 +376,3 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
-
